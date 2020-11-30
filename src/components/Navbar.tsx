@@ -1,7 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
+interface IParamsNavbar {
+    cartOnClik: (event:React.MouseEvent<HTMLButtonElement>)=>void,
+    countItems: number
+}
+
+const Navbar = (props : IParamsNavbar) => {
     const [toogle, setToogle] = React.useState<boolean>(false);
     return (
         <nav className="bg-white  border-b-2 border-yellow-400">
@@ -18,7 +23,7 @@ const Navbar = () => {
                                 Menu open: "hidden", Menu closed: "block"
                                 --> */}
                             <svg className={`block ${toogle ? 'hidden' : 'block'} h-6 w-6  fill-current text-yellow-600`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                <path strokeLinecap="round" strokeLinejoin="round"strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                             {/* <!-- Icon when menu is open. -->
                                     <!--
@@ -27,7 +32,7 @@ const Navbar = () => {
                                     Menu open: "block", Menu closed: "hidden"
                                     --> */}
                             <svg className={`${toogle ? 'block' : 'hidden'} h-6 w-6  fill-current text-yellow-600`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                <path strokeLinecap="round" strokeLinejoin="round"strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
                     </div>
@@ -41,7 +46,7 @@ const Navbar = () => {
                             <div className="flex space-x-4">
                                 <NavLink exact to="/" activeClassName="text-yellow-600" className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">QR Mobile</NavLink>
                                 <NavLink to="/menu" activeClassName="text-yellow-600" className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Menu</NavLink>
-                                <NavLink to="/table"  activeClassName="text-yellow-600" className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Table</NavLink>
+                                <NavLink to="/table" activeClassName="text-yellow-600" className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Table</NavLink>
                             </div>
                         </div>
                     </div>
@@ -49,20 +54,20 @@ const Navbar = () => {
                         {/* <!-- Profile dropdown --> */}
                     * <div className="ml-3 relative">
                             <div>
-                                <button className="flex text-sm focus:outline-none " id="user-menu" aria-haspopup="true">
-                                <span className="relative inline-block">
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    {/* <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-yellow-500 rounded-full">
+                                <button onClick={props.cartOnClik} className="flex text-sm focus:outline-none " id="user-menu" aria-haspopup="true">
+                                    <span className="relative inline-block">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                        </svg>
+                                        {/* <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-yellow-500 rounded-full">
                                         1
                                     </span> */}
-                                    <span className="absolute top-0 right-0 inline-block w-2 h-2 transform translate-x-1/2 -translate-y-1/2 bg-yellow-500 rounded-full"></span>
-                                </span>
+                                        <span className="absolute top-0 right-0 inline-block w-2 h-2 transform translate-x-1/2 -translate-y-1/2 bg-yellow-500 rounded-full"></span>
+                                    </span>
 
-                                    
+
                                 </button>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,8 +82,8 @@ const Navbar = () => {
             <div className={`${toogle ? 'block' : 'hidden'} sm:hidden   `}>
                 <div className="px-2 pt-2 pb-3 space-y-1">
                     <NavLink exact to="/" activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">QR Mobile</NavLink>
-                    <NavLink to="/menu"  activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Menu</NavLink>
-                    <NavLink to="/table"  activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Table</NavLink>
+                    <NavLink to="/menu" activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Menu</NavLink>
+                    <NavLink to="/table" activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Table</NavLink>
                 </div>
             </div>
         </nav>
