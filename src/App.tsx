@@ -5,7 +5,7 @@ import ButtonIcon from './components/Button/ButtonIcon';
 import { ButtonSIze } from './components/Button/Size';
 import Navbar from './components/Navbar';
 import CartView from './views/CartView';
-
+import { Trash } from "heroicons-react";
 
 function App() {
   const [toogleCart,updateToolge] = React.useState<boolean>(true);
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Router>
         <div className="w-full flex flex-row min-w-full">
-          <div className={`w-full ${toogleCart ? 'lg:w-3/4' : ''}`}>
+          <div className={`w-full transform ${toogleCart ? 'lg:w-3/4' : 'lg:w-4/4'}`}>
           <Navbar
             cartOnClik ={handleClickCart}
             countItems ={0}
@@ -28,6 +28,7 @@ function App() {
                 <ButtonIcon
                   label={"Small Button"}
                   size={ButtonSIze.Small}
+                  icon={<Trash size={14}/>}
                 />
               </Route>
               <Route  path="/menu">
