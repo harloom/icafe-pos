@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div className="w-full flex flex-row min-w-full  h-screen bg-gray-200  max-h-screen overflow-y-hidden">
+        <div className="w-full flex flex-row min-w-full  min-h-screen bg-gray-200  max-h-screen overflow-y-hidden">
           <div className={`w-full block transform ${toogleCart ? 'lg:w-3/4' : 'lg:w-4/4'}`}>
           <Navbar
             cartOnClik ={handleClickCart}

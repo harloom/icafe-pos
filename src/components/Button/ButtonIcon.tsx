@@ -37,7 +37,7 @@ const ButtonIcon = memo(function ButtonIcon({ icon,size =ButtonSIze.Base, style 
           case ButtonStyle.LigthDark :
           return ligthAndDrak;
           default:
-          return  `text-white bg-yellow-500 ${hover} ${focus}`;
+          return  `text-white bg-gradient-to-r from-yellow-400 to-yellow-600 ${hover} ${focus}`;
       }
   })();
 
