@@ -9,7 +9,7 @@ interface IParamsNavbar {
 const Navbar = (props : IParamsNavbar) => {
     const [toogle, setToogle] = React.useState<boolean>(false);
     return (
-        <nav className="bg-white  border-b-2 border-yellow-400">
+        <nav className="w-full   bg-white  border-b-4 border-yellow-400">
             <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
                 <div className="relative flex items-center justify-between h-12">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -80,10 +80,10 @@ const Navbar = (props : IParamsNavbar) => {
             }
 
             <div className={`${toogle ? 'block' : 'hidden'} sm:hidden   `}>
-                <div className="px-2 pt-2 pb-3 space-y-1">
-                    <NavLink exact to="/" activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">QR Mobile</NavLink>
-                    <NavLink to="/menu" activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Menu</NavLink>
-                    <NavLink to="/table" activeClassName="text-yellow-600" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Table</NavLink>
+                <div className="w-full flex flex-row px-4 py-4  justify-between items-center text-center ">
+                     <NavLink exact to="/" activeClassName="text-yellow-600 border-yellow-600" className="w-full border  p-1 mx-1 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">QR Mobile</NavLink>
+                    <NavLink to="/menu" activeClassName="text-yellow-600 border-yellow-600" className="w-full border p-1   mx-1 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Menu</NavLink>
+                    <NavLink to="/table" activeClassName="text-yellow-600 border-yellow-600" className="w-full border p-1  mx-1 rounded-md text-sm font-medium text-gray-400 hover:text-gray-700">Table</NavLink>
                 </div>
             </div>
         </nav>

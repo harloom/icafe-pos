@@ -1,9 +1,10 @@
 import React from 'react'
-import ButtonIcon, { ButtonStyle } from '../components/Button/ButtonIcon';
+import ButtonIcon, { ButtonStyle } from '../../components/Button/ButtonIcon';
 import Moment from 'moment';
 import { Check, Trash, X } from "heroicons-react";
-import { ButtonSIze } from '../components/Button/Size';
-import ItemCart from '../components/Card/ItemCart';
+import { ButtonSIze } from '../../components/Button/Size';
+import ItemCart from '../../components/Cart/ItemCart';
+
 interface ICartView {
   isOpen: boolean
   onClose: Function
