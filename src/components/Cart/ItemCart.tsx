@@ -16,11 +16,13 @@ const ItemCart = (props : IPropsItemCart)=>{
 
   React.useEffect(()=>{
     updateValue(props.count);
+    // eslint-disable-next-line
   },[]);
 
 
   React.useEffect(() => {
     props.onValueChange(value);
+    // eslint-disable-next-line
   }, [value]);
 
   
@@ -43,7 +45,7 @@ const ItemCart = (props : IPropsItemCart)=>{
               <span className="p-2">{value}</span>
             <button onClick={(event)=>{
               updateValue((prev)=>{
-                if(prev == 1){
+                if(prev === 1){
                   return prev;
                 }
                 return prev-1;

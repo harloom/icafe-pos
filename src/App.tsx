@@ -1,12 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import "./assets/css/main.css";
-import ButtonIcon from './components/Button/ButtonIcon';
-import { ButtonSIze } from './components/Button/Size';
+import BaseRoute from './routes';
 import Navbar from './components/Navbar';
 import CartView from './views/layout/CartView';
-import { Trash } from "heroicons-react";
-import MenuPage from './views/page/MenuPage';
 
 function App() {
   const [toogleCart,updateToolge] = React.useState<boolean>(true);
@@ -25,21 +22,8 @@ function App() {
             countItems ={0}
           />
           <div className="w-full mt-1.2 ">
-          <Switch>
-              <Route exact path="/">
-                <ButtonIcon
-                  label={"Small Button"}
-                  size={ButtonSIze.Small}
-                  icon={<Trash size={14}/>}
-                />
-              </Route>
-              <Route  path="/menu" component={MenuPage}/>
-              <Route  path="/table">
-                Table
-              </Route>
-          </Switch>
+          <BaseRoute/>
           </div>
-         
           </div>
             <CartView
               isOpen ={toogleCart}

@@ -52,7 +52,7 @@ const Navbar = (props : IParamsNavbar) => {
                     </div>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         {/* <!-- Profile dropdown --> */}
-                    * <div className="ml-3 relative">
+                     <div className="ml-3 relative">
                             <div>
                                 <button onClick={props.cartOnClik} className="flex text-sm focus:outline-none " id="user-menu" aria-haspopup="true">
                                     <span className="relative inline-block">

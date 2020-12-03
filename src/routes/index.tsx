@@ -1,11 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 
+import React from 'react';
+import {  Route, NavLink, Switch } from 'react-router-dom'
+import MenuPage from '../views/page/MenuPage';
+import ScanMobilePage from '../views/page/ScanMobilePage';
+import TablePage from '../views/page/TablePage';
 const MainRoute = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+    <Switch>
+              <Route exact path="/" component={ScanMobilePage}/>
+              <Route  path="/menu" component={MenuPage}/>
+              <Route  path="/table" component={TablePage}/>
+          </Switch>
+    </>
+  
   )
 }
 
