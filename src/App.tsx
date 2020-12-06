@@ -4,19 +4,26 @@ import "./assets/css/main.css";
 import BaseRoute from './routes';
 import Navbar from './components/Navbar';
 import CartView from './views/layout/CartView';
+import { RootState } from './store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCartToogle } from './store/ui/actions';
 
 function App() {
-  const [toogleCart,updateToolge] = React.useState<boolean>(true);
-
+  const selectUIToogle = (state : RootState)=> state.ui;
+  const ui =  useSelector(selectUIToogle)
+  const dispatch = useDispatch()
+ 
   const handleClickCart = (event : (React.MouseEvent<HTMLButtonElement>))=>{
-    updateToolge(!toogleCart);
+    dispatch(updateCartToogle(!ui.toogleCart));
   }
 
   return (
     <div className="App">
+      {console.log('RENDER PAREENT')}
+      {/* {console.log(root)} */}
       <Router>
-        <div className="w-full flex flex-row min-w-full  min-h-screen bg-gray-200  max-h-screen overflow-y-hidden">
-          <div className={`w-full block transform ${toogleCart ? 'lg:w-3/4' : 'lg:w-4/4'}`}>
+        <div className="w-full flex flex-row min-w-full  min-h-screen bg-gray-200  max-h-screen overflow-y-hidden ">
+          <div className={`w-full block transform ${ui.toogleCart ? 'lg:w-3/4' : 'lg:w-4/4'}`}>
           <Navbar
             cartOnClik ={handleClickCart}
             countItems ={0}
@@ -26,7 +33,7 @@ function App() {
           </div>
           </div>
             <CartView
-              isOpen ={toogleCart}
+              isOpen ={ui.toogleCart}
               onClose ={handleClickCart}
             />
         </div>

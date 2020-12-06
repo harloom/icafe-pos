@@ -1,5 +1,10 @@
-import React from 'react'
+import { stat } from 'fs';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import CardProduct from '../../components/Card/CardProduct'
+import { getMenuNetwork } from '../../store/menu_oder/actions_menu';
+import { RootState } from '../../store/store';
+// import { getMenuNetwork } from '../../store/menu_oder/actions_menu';
 import SideCategory from '../layout/SideCategory'
 
 const exampleData = [{
@@ -48,7 +53,22 @@ const exampleData = [{
 },
 ]
 
+
 const MenuPage = () => {
+  
+  const dispatch = useDispatch();
+  const selectMenu = (state : RootState) => state.menu;
+  const  storeMenu = useSelector(selectMenu);
+
+
+  useEffect(()=>{
+    console.log("Menu page");
+      dispatch(getMenuNetwork({page:1}));
+      // setInterval(()=>{
+      //     dispatch(getMenuNetwork({page:2}));
+      // },5000);
+  },[])
+
   return (  
     <div className="flex flex-row  min-w-full bg-gray-300">
       <SideCategory isOpen={true} />
@@ -57,12 +77,12 @@ const MenuPage = () => {
           <div className="w-full flex flex-wrap justify-center md:justify-center lg:justify-start  pb-20">
 
             {
-              exampleData.map((value, index ) => {
+              storeMenu.items.map((value, index ) => {
                 return <CardProduct
                   key={index}
                   discount={value.discount}
                   nameProduct={value.name + ` ${index}`}
-                  image={value.image}
+                  image={value?.image || ''}
                   price={value.price}
                   onClick={(event) => {
                     console.log(event);
