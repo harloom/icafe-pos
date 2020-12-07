@@ -2,6 +2,7 @@ import { stat } from 'fs';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import CardProduct from '../../components/Card/CardProduct'
+import { addToCart } from '../../store/cart/actions_cart';
 import { getMenuNetwork } from '../../store/menu_oder/actions_menu';
 import { RootState } from '../../store/store';
 // import { getMenuNetwork } from '../../store/menu_oder/actions_menu';
@@ -70,7 +71,7 @@ const MenuPage = () => {
   },[])
 
   return (  
-    <div className="flex flex-row  min-w-full bg-gray-300">
+    <div className="flex flex-row  min-w-full bg-gray-200">
       <SideCategory isOpen={true} />
       <div className="w-full  h-screen min-h-screen flex ">
         <div className="w-full overflow-y-auto scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-transparent ">
@@ -85,7 +86,7 @@ const MenuPage = () => {
                   image={value?.image || ''}
                   price={value.price}
                   onClick={(event) => {
-                    console.log(event);
+                      dispatch(addToCart(value));
                   }}
                 />
               })

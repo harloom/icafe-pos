@@ -43,6 +43,14 @@ function exampleAPI() {
             name : "Burger",
             price : 2000,
             image :'/logo512.png'
+          },
+          {
+            _id : "asdasd12414",
+            discount : 10,
+            idMenu : "Menu2",
+            name : "Burger Gold",
+            price : 3000,
+            image :'/logo512.png'
           }
         ]
       });

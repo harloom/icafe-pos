@@ -1,7 +1,7 @@
 export const ADD_PRODUCT = "GET_PRODUCT";
 export const LOADING_PRODUCT = "LOADING_PRODUCT";
 
-interface IMenuModel {
+export interface IMenuModel {
   _id : string,
   idMenu : string,
   name : string,

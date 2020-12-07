@@ -1,19 +1,42 @@
-import { CartActionTypes, CartBaseState } from "./cart_types";
+import { CartActionTypes, CartBaseState, LOADING_CART, UPDATE_CART } from "./cart_types";
 
+export const initialState : CartBaseState={
+  items : [],
+  totals : 0,
 
-const initialState : CartBaseState={
-  items : [{test : 'aja'}]
 }
- function cartReducer(
+
+function cartReducer(
   state = initialState,
   action  : CartActionTypes
-) : CartBaseState{
+) : CartBaseState
+{
   console.log(action);
-  switch(action.type){
-    default :
-      return state;
-    
-  }
+  switch(action.type)
+    {
+      case LOADING_CART :
+        return {
+          ...state,
+          isLoading : true
+        }
+      
+      case UPDATE_CART:{
+          if(action.payload){
+            return {
+              ...state,
+              ...action.payload.value
+            }
+          }
+          return {
+            ...state,
+            isLoading : false
+          }
+      }
+
+      default :
+        return state;
+      
+    }
 }
 
 export default cartReducer;

@@ -2,8 +2,13 @@ import React from 'react'
 import ButtonIcon, { ButtonStyle } from '../../components/Button/ButtonIcon';
 import Moment from 'moment';
 import { Check, Trash, X } from "heroicons-react";
+
 import { ButtonSIze } from '../../components/Button/Size';
 import ItemCart from '../../components/Cart/ItemCart';
+
+import { RootState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeValueItem } from '../../store/cart/actions_cart';
 
 interface ICartView {
   isOpen: boolean
@@ -12,7 +17,11 @@ interface ICartView {
 
 
 function CartView({ isOpen = true, onClose }: ICartView) {
+  const selectCart = (state: RootState) => state.cart;
+  const cart = useSelector(selectCart);
+  const dispatch = useDispatch();
 
+  
   return (
     <aside className={`bg-gray-700 transform   top-0  right-0 w-3/4  lg:w-1/4 fixed min-h-screen  overflow-auto  z-30 
           ${isOpen ? 'translate-x-0 ease-out transition  duration-700   ' : 'translate-x-full ease-in transition  duration-700   overflow'}
@@ -23,7 +32,7 @@ function CartView({ isOpen = true, onClose }: ICartView) {
           {/* //#region header */}
           <div className="flex flex-wrap border-b border-white py-2">
             <div onClick={() => onClose()} className="cursor-pointer mr-4">
-                <X size={16} className="text-white"/>
+              <X size={16} className="text-white" />
             </div>
             <div>
               <span className="text-white text-sm">{Moment(Date.now()).toLocaleString()}</span>
@@ -39,18 +48,32 @@ function CartView({ isOpen = true, onClose }: ICartView) {
           {/* //#endregion table */}
 
           {/* //#region  list cart */}
-          <div className="mt-4 text-white overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent">
+          <div className="mt-4 text-gray-50 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent">
             {
-              [1, 2, 3, 4, 5, 6].map((ele,index) =>
-                <ItemCart
+              // [1, 2, 3, 4, 5, 6].map((ele,index) =>
+              //   <ItemCart
+              //     key={index}
+              //     count={1}
+              //     name="Burger"
+              //     price={10000}
+              //     onValueChange= {(value:number)=>{
+              //       console.log(value);
+              //     }}
+              //   />)
+
+              cart.items.map((obj, index) => {
+                // console.log(obj);
+                return <ItemCart
                   key={index}
-                  count={1}
-                  name="Burger"
-                  price={10000}
-                   onValueChange= {(value:number)=>{
-                    console.log(value);
+                  count={obj.count}
+                  name={obj.name || ''}
+                  onValueChange={(value: number) => {
+                    dispatch(changeValueItem(obj,value));
                   }}
-                />)
+                  price={obj.price}
+                />
+              })
+
             }
           </div>
           {/* //#endregion list cart*/}
@@ -63,7 +86,9 @@ function CartView({ isOpen = true, onClose }: ICartView) {
               <span className="text-gray-300 text-xs">Total</span>
             </div>
             <div>
-              <span className="text-white text-base font-semibold">Rp 1000</span>
+              <span className="text-white text-base font-semibold">
+                Rp {cart.totals}
+              </span>
             </div>
           </div>
 
